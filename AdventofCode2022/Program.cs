@@ -4,14 +4,15 @@ using static AdventofCode2022.Utils;
 Console.WriteLine($"Day two - {Main.DayTwoB()}");
 Console.ReadLine();
 
+
 public static class Main
 {
+    static string input = GetFileInput("dayone.txt");
+
     #region DayOne
 
     internal static int DayOneA()
     {
-        var input = GetFileInput("dayone.txt");
-
         var elves = input.Split(Environment.NewLine);
 
         var max = 0;
@@ -35,7 +36,6 @@ public static class Main
 
     internal static int DayOneB()
     {
-        var input = GetFileInput("dayone.txt");
         var elves = input.Split(Environment.NewLine);
 
         int[] maxCalories = new int[3] { 0, 0, 0 };
@@ -71,8 +71,7 @@ public static class Main
 
     internal static int DayTwoA()
     {
-        var inputs = GetFileInput("daytwo.txt").Split(Environment.NewLine);
-
+        var inputs = input.Split(Environment.NewLine);
         int total = 0;
 
         foreach (var play in inputs)
@@ -97,7 +96,7 @@ public static class Main
     internal static int DayTwoB()
     {
 
-        var inputs = GetFileInput("daytwo.txt").Split(Environment.NewLine);
+        var inputs = input.Split(Environment.NewLine);
 
         int total = 0;
 
@@ -158,6 +157,14 @@ public static class Main
     }
 
     #endregion DayTwo
+
+    #region DayThree
+
+    public static int DayThreeA() {
+        return 0;
+    }
+
+    #endregion
 
 }
 
