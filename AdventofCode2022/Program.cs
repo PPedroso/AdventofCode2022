@@ -1,13 +1,14 @@
 ﻿using System.Data;
+using System.Runtime.CompilerServices;
 using static AdventofCode2022.Utils;
 
-Console.WriteLine($"Day three - {Main.DayThreeB()}");
+Console.WriteLine($"Day three - {Main.DayFourB()}");
 Console.ReadLine();
 
 
 public static class Main
 {
-    static string input = GetFileInput("day3.txt");
+    static string input = GetFileInput("day4.txt");
 
     #region DayOne
 
@@ -216,6 +217,69 @@ public static class Main
     }
 
     #endregion
+
+    #region DayFour
+
+    public static int DayFourA()
+    {
+        var total = 0;
+
+        foreach (var assignemt in input.Split(Environment.NewLine))
+        {
+            var sections = assignemt.Split(',');
+
+            if (sections[0].IsContaintedBy(sections[1]) || sections[1].IsContaintedBy(sections[0]))
+                total++;
+        }
+
+        return total;
+    }
+
+    public static int DayFourB()
+    {
+        var total = 0;
+
+        foreach (var assignemt in input.Split(Environment.NewLine))
+        {
+            var sections = assignemt.Split(',');
+
+            if (sections[0].IsOverlapedBy(sections[1]) || sections[1].IsOverlapedBy(sections[0]))
+                total++;
+        }
+
+        return total;
+    }
+
+
+    /// <summary>
+    /// Format of the string -> 2-5
+    /// </summary>
+    static bool IsContaintedBy(this string str, string container)
+    {
+        var strLimits = str.Split('-');
+        var containerLimits = container.Split('-');
+
+        return int.Parse(containerLimits[0]) <= int.Parse(strLimits[0]) && int.Parse(containerLimits[1]) >= int.Parse(strLimits[1]);
+    }
+
+    /// <summary>
+    /// Format of the string -> 2-5
+    /// </summary>
+    static bool IsOverlapedBy(this string str, string overlapper)
+    {
+        var strLimits = str.Split('-');
+        var overlapperLimits = overlapper.Split('-');
+
+        if (int.Parse(strLimits[0]) >= int.Parse(overlapperLimits[0]) && int.Parse(strLimits[0]) <= int.Parse(overlapperLimits[1]))
+            return true;
+
+        if (int.Parse(strLimits[1]) >= int.Parse(overlapperLimits[0]) && int.Parse(strLimits[1]) <= int.Parse(overlapperLimits[1]))
+            return true;
+
+        return false;
+    }
+
+    #endregion  DayFour
 
 }
 
