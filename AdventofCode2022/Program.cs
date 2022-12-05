@@ -2,13 +2,13 @@
 using System.Runtime.CompilerServices;
 using static AdventofCode2022.Utils;
 
-Console.WriteLine($"Day three - {Main.DayFourB()}");
+Console.WriteLine($"Day three - {Main.DayFiveA()}");
 Console.ReadLine();
 
 
 public static class Main
 {
-    static string input = GetFileInput("day4.txt");
+    static string input = GetFileInput("day5_example.txt");
 
     #region DayOne
 
@@ -281,6 +281,33 @@ public static class Main
 
     #endregion  DayFour
 
+    #region DayFive
+
+
+
+    public static string DayFiveA()
+    {
+        Stack<Char>[] stacks = new Stack<Char>[3]
+        {
+            new Stack<Char>(),
+            new Stack<Char>(),
+            new Stack<Char>()
+        };
+
+        foreach (var line in input.Split(Environment.NewLine).Select(x => x.ToCharArray()))
+        {
+            for (int i = 0; i < line.Length; i += 4)
+            {
+                if (line[i+1] != ' ')
+                    stacks[(i / 4)].Push(line[i+1]); ;
+            }
+        }
+
+        return String.Empty;
+
+    }
+
+    #endregion
 }
 
 
