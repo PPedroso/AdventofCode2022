@@ -1,14 +1,14 @@
 ﻿using System.Data;
-using System.Runtime.CompilerServices;
+using System.Globalization;
 using static AdventofCode2022.Utils;
 
-Console.WriteLine($"Day three - {Main.DayFiveB()}");
+Console.WriteLine($"Day three - {Main.DaySixB()}");
 Console.ReadLine();
 
 
 public static class Main
 {
-    static string input = GetFileInput("day5.txt");
+    static string input = GetFileInput("day6.txt");
 
     #region DayOne
 
@@ -352,7 +352,7 @@ public static class Main
     public static string DayFiveB()
     {
         const int NUMBER_OF_STACKS = 9;
-        
+
         Stack<Char>[] stacks = new Stack<Char>[NUMBER_OF_STACKS];
         for (int i = 0; i < NUMBER_OF_STACKS; ++i)
             stacks[i] = new Stack<char>();
@@ -413,6 +413,42 @@ public static class Main
     }
 
     #endregion
+
+    #region DaySix
+
+    public static int DaySixA()
+    {
+        for (int s = 0; (s + 4) < input.Length;)
+        {
+            string str = input.Substring(s, 4);
+
+            var groups = str.GroupBy(g => g);
+
+            if (groups.Count() == 4)
+                return s + 4;
+            else
+                s += 1;
+        }
+        return 0;
+    }
+
+    public static int DaySixB()
+    {
+        for (int s = 0; (s + 14) < input.Length;)
+        {
+            string str = input.Substring(s, 14);
+
+            var groups = str.GroupBy(g => g);
+
+            if (groups.Count() == 14)
+                return s + 14;
+            else
+                s += 1;
+        }
+        return 0;
+    }
+
+    #endregion DaySix
 }
 
 
